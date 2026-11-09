@@ -1,0 +1,21 @@
+[Unit]
+Description=Testpress Python Heartbeat Worker
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=testpress-worker
+WorkingDirectory=/home/reshma/linux-management
+ExecStart=/usr/bin/python3 /home/reshma/linux-management/app.py
+EnvironmentFile=/etc/testpress-worker.env
+Restart=on-failure
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+CPUQuota=50%
+MemoryMax=60M
+MemorySwapMax=0
+
+[Install]
+WantedBy=multi-user.target
